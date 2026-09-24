@@ -1,0 +1,8 @@
+{
+  "name": "@htsdk/ninjaone",
+  "module": "src/index.ts",
+  "type": "module",
+  "dependencies": {
+    "zod": "^4.6.5"
+  }
+}
