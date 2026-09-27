@@ -1,5 +1,11 @@
 # @htsdk/iinapi
 
+## 1.0.4
+
+### Patch Changes
+
+- 76540bb: add README
+
 ## 1.0.3
 
 ### Patch Changes
