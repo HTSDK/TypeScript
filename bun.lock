@@ -9,6 +9,13 @@
         "typescript": "^7.0.2",
       },
     },
+    "packages/deezer": {
+      "name": "@htsdk/deezer",
+      "version": "0.0.1",
+      "dependencies": {
+        "zod": "^4.6.5",
+      },
+    },
     "packages/google-web-search-indexing": {
       "name": "@htsdk/google-web-search-indexing",
       "dependencies": {
@@ -23,7 +30,7 @@
     },
     "packages/iinapi": {
       "name": "@htsdk/iinapi",
-      "version": "0.0.1",
+      "version": "1.0.4",
       "dependencies": {
         "zod": "^4.6.5",
       },
@@ -87,6 +94,8 @@
     "@clack/core": ["@clack/core@1.5.1", "", { "dependencies": { "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-iHTrHA8MtVuLl2TfZySmcKv1qO2PoyC9Z7pfSDozEuV5vtY3/wcOPKJXlqJ5Oq2Cx5DDGQGAMVx6HZfRRoVEbQ=="],
 
     "@clack/prompts": ["@clack/prompts@1.8.1", "", { "dependencies": { "@clack/core": "1.5.1", "fast-string-width": "^3.0.2", "fast-wrap-ansi": "^0.2.0", "sisteransi": "^1.0.5" } }, "sha512-dlT1m5e/0yUL0kRNcQn7yGLVThkgbB0Ga/1AmfDDC/8ik6AIiSf2QLQO2zPYvefsHP0aFgxO93cVLCCfDp7kzQ=="],
+
+    "@htsdk/deezer": ["@htsdk/deezer@workspace:packages/deezer"],
 
     "@htsdk/google-web-search-indexing": ["@htsdk/google-web-search-indexing@workspace:packages/google-web-search-indexing"],
 
