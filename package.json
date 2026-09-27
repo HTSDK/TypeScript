@@ -2,8 +2,12 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build": "bun run --filter '*' build"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.5.14",
-    "@changesets/cli": "^3.0.3"
+    "@changesets/cli": "^3.0.3",
+    "typescript": "^7.0.2"
   }
 }
