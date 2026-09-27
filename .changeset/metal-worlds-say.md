@@ -2,4 +2,4 @@
 "@htsdk/iinapi": major
 ---
 
-add innapi
+add iinapi
