@@ -7,6 +7,18 @@
         "@biomejs/biome": "^2.5.14",
       },
     },
+    "packages/google-web-search-indexing": {
+      "name": "@htsdk/google-web-search-indexing",
+      "dependencies": {
+        "zod": "^4.6.5",
+      },
+    },
+    "packages/google-youtube-data-v3": {
+      "name": "@htsdk/google-youtube-data-v3",
+      "dependencies": {
+        "zod": "^4.6.5",
+      },
+    },
     "packages/ninjaone": {
       "name": "@htsdk/ninjaone",
       "dependencies": {
@@ -32,6 +44,10 @@
     "@biomejs/cli-win32-arm64": ["@biomejs/cli-win32-arm64@2.5.14", "", { "os": "win32", "cpu": "arm64" }, "sha512-pHgAFffmZtaYoxavEsWEYNvcA7NwOIjLyqw2HXyLbt16xYryX0L4fMV2u0G9ag6LNYPIoqWaWqzUcnc6rLGGXg=="],
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.5.14", "", { "os": "win32", "cpu": "x64" }, "sha512-oJWmBhoHsnhUKIke+0gXDX0mltJrWHA1UyHsrTlXwX0TL64ilVZAo+TYZm97baecV0esBdpzy3k96q+09JaZUQ=="],
+
+    "@htsdk/google-web-search-indexing": ["@htsdk/google-web-search-indexing@workspace:packages/google-web-search-indexing"],
+
+    "@htsdk/google-youtube-data-v3": ["@htsdk/google-youtube-data-v3@workspace:packages/google-youtube-data-v3"],
 
     "@htsdk/ninjaone": ["@htsdk/ninjaone@workspace:packages/ninjaone"],
 
