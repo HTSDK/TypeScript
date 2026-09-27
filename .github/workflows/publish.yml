@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       mode: ${{ steps.select-mode.outputs.mode }}
-      publish-plan-artifact-id: ${{ steps.select-mode.outputs.publis-plan-artifact-id }}
+      publish-plan-artifact-id: ${{ steps.select-mode.outputs.publish-plan-artifact-id }}
     permissions:
       contents: read
     steps:
@@ -43,7 +43,7 @@ jobs:
     outputs:
       version-dir-artifact-id: ${{ steps.version.outputs.version-dir-artifact-id }}
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
     steps:
       - name: Checkout Repo
