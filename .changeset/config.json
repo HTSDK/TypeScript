@@ -3,12 +3,6 @@
   "baseBranch": "main",
   "access": "public",
   "format": "auto",
-  "changelog": [
-    "@changesets/changelog-github",
-    {
-      "repo": "HTSDK/TypeScript"
-    }
-  ],
   "commit": true,
   "ignore": [],
   "fixed": [],
