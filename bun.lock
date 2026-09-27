@@ -19,6 +19,12 @@
         "zod": "^4.6.5",
       },
     },
+    "packages/iinapi": {
+      "name": "@htsdk/iinapi",
+      "dependencies": {
+        "zod": "^4.6.5",
+      },
+    },
     "packages/ninjaone": {
       "name": "@htsdk/ninjaone",
       "dependencies": {
@@ -48,6 +54,8 @@
     "@htsdk/google-web-search-indexing": ["@htsdk/google-web-search-indexing@workspace:packages/google-web-search-indexing"],
 
     "@htsdk/google-youtube-data-v3": ["@htsdk/google-youtube-data-v3@workspace:packages/google-youtube-data-v3"],
+
+    "@htsdk/iinapi": ["@htsdk/iinapi@workspace:packages/iinapi"],
 
     "@htsdk/ninjaone": ["@htsdk/ninjaone@workspace:packages/ninjaone"],
 
