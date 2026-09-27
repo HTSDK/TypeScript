@@ -1,5 +1,11 @@
 # @htsdk/iinapi
 
+## 1.0.2
+
+### Patch Changes
+
+- bdd9978: fix publish config
+
 ## 1.0.1
 
 ### Patch Changes
