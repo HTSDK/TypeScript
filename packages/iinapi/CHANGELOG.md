@@ -1,5 +1,11 @@
 # @htsdk/iinapi
 
+## 1.0.3
+
+### Patch Changes
+
+- 5594875: fix packaging
+
 ## 1.0.2
 
 ### Patch Changes
