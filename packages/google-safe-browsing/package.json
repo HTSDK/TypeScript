@@ -1,0 +1,29 @@
+{
+  "name": "@htsdk/google-safe-browsing",
+  "version": "0.0.1",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HTSDK/TypeScript.git",
+    "directory": "packages/google-safe-browsing"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./v4": "./dist/v4/index.js",
+    "./v5:": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
