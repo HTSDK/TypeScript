@@ -1,0 +1,25 @@
+{
+  "name": "@htsdk/bible-api",
+  "version": "0.0.1",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HTSDK/TypeScript.git",
+    "directory": "packages/bible-api"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}
