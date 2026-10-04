@@ -1,0 +1,28 @@
+{
+  "name": "@htsdk/dog-breed-health",
+  "version": "0.0.1",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HTSDK/TypeScript.git",
+    "directory": "packages/dog-breed-health"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "openapi-3.0-types": "^1.0.5"
+  }
+}

@@ -16,6 +16,16 @@
         "zod": "^4.6.5",
       },
     },
+    "packages/dog-breed-health": {
+      "name": "@htsdk/dog-breed-health",
+      "version": "0.0.1",
+      "dependencies": {
+        "zod": "^4.6.5",
+      },
+      "devDependencies": {
+        "openapi-3.0-types": "^1.0.5",
+      },
+    },
     "packages/google-safe-browsing": {
       "name": "@htsdk/google-safe-browsing",
       "version": "0.0.1",
@@ -104,6 +114,8 @@
 
     "@htsdk/deezer": ["@htsdk/deezer@workspace:packages/deezer"],
 
+    "@htsdk/dog-breed-health": ["@htsdk/dog-breed-health@workspace:packages/dog-breed-health"],
+
     "@htsdk/google-safe-browsing": ["@htsdk/google-safe-browsing@workspace:packages/google-safe-browsing"],
 
     "@htsdk/google-web-search-indexing": ["@htsdk/google-web-search-indexing@workspace:packages/google-web-search-indexing"],
@@ -181,6 +193,8 @@
     "jsonc-parser": ["jsonc-parser@3.3.1", "", {}, "sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ=="],
 
     "launch-editor": ["launch-editor@2.14.1", "", { "dependencies": { "picocolors": "^1.1.1", "shell-quote": "^1.8.4" } }, "sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA=="],
+
+    "openapi-3.0-types": ["openapi-3.0-types@1.0.5", "", {}, "sha512-QJTRzES7jK3wx8MkAUjrH3mskRN9eApqJrLxan467t1K4eAcBR75NCpBfui0wrTIcuJ/jtRiXlciRPRFzFTDlA=="],
 
     "package-manager-detector": ["package-manager-detector@1.8.0", "", {}, "sha512-yQA4H19AmPEoMUeavPMDIe1higySl/gH/yaQrkT/s07Qp+7pp2hYz30N3z2l5BkjVkF9Ow6o0wjJamm2y7Sn0A=="],
 
