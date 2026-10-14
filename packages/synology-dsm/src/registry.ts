@@ -13,12 +13,16 @@ export type Definition = {
 
 export type Method = Record<number, Version>
 
-export type Version<I extends z.ZodType = z.ZodType, O extends z.ZodType = z.ZodType> = {
+export type Version<
+  I extends z.ZodType = z.ZodType,
+  O extends z.ZodType = z.ZodType,
+  D extends Partial<z.input<NoInfer<I>>> = Partial<z.input<NoInfer<I>>>
+> = {
   /** @default true */
   respond?: boolean
   input?: {
     schema: I
-    defaults?: Partial<z.input<NoInfer<I>>>
+    defaults: D
   }
   output?: O
   setSession?: {
@@ -30,7 +34,13 @@ export type Version<I extends z.ZodType = z.ZodType, O extends z.ZodType = z.Zod
 export const registry = <const R extends Registry>(r: R) => r
 export const definition = <const D extends Definition>(d: D) => d
 export const method = <const M extends Method>(m: M) => m
-export const version = <const I extends z.ZodType, const O extends z.ZodType>(v: Version<I, O>) => v
+export const version = <
+  const I extends z.ZodType,
+  const O extends z.ZodType,
+  const D extends Partial<z.input<NoInfer<I>>>
+>(
+  v: Version<I, O, D>
+) => v
 
 export const REGISTRY = registry({
   apis: {
@@ -39,7 +49,12 @@ export const REGISTRY = registry({
         TEST: definition({
           methods: {
             hello: method({
-              1: version({}),
+              1: version({
+                input: {
+                  schema: z.object({}),
+                  defaults: {}
+                }
+              }),
               2: version({})
             })
           }
@@ -53,11 +68,16 @@ export const REGISTRY = registry({
                 test: z.string()
               }),
               defaults: {
-                test: "kdfk"
+                test: ""
               }
             },
             output: z.object({
               test: z.string()
+            })
+          }),
+          2: version({
+            output: z.object({
+              test: z.boolean()
             })
           })
         })

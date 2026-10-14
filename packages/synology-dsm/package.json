@@ -20,7 +20,7 @@
     "zod": "^4.6.5"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "bun src/generate && tsc"
   },
   "devDependencies": {
     "ts-morph": "^28.0.0"

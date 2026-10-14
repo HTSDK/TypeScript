@@ -16,5 +16,6 @@
       "$/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/generate.ts", "src/registry.ts"]
 }
