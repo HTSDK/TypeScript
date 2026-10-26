@@ -10,6 +10,7 @@ type APIContext = {
   url: string
   path: string
   state: APIState
+  errors: Record<number, string>
 }
 
 type Context = {
@@ -55,13 +56,25 @@ function createContext(context: APIContext, api: string, version: number, method
         const result = z
           .object({
             success: z.boolean(),
-            error: z.unknown().optional(),
+            error: z
+              .object({
+                code: z.int(),
+                errors: z.array(z.unknown()).optional()
+              })
+              .optional(),
             data: output.optional()
           })
           .parse(await response.json())
 
         if (result.data) {
           return result.data
+        } else if (result.error) {
+          const message = context.errors[result.error.code]
+          throw new Error(
+            `${api}.${method}(${version}) ${result.error.code}${message ? `: ${message}` : ""}`
+          )
+        } else if (result.success) {
+          return undefined as z.output<O>
         } else {
           throw new Error("Failed to parse response")
         }
@@ -109,12 +122,37 @@ export abstract class API {
     return this.context.path
   }
 
+  protected get errors(): Record<number, string> {
+    return {
+      ...this.context.errors,
+      100: "Unknown error.",
+      101: "no parameter of API, method or version.",
+      102: "The requested API does not exist.",
+      103: "The requested method does not exist.",
+      104: "The requested version does not support the functionality.",
+      105: "The logged in session does not have permission.",
+      106: "Session timeout.",
+      107: "Session interrupted by duplicated login.",
+      108: "Failed to upload the file.",
+      109: "The network connection is unstable or the system is busy.",
+      110: "The network connection is unstable or the system is busy.",
+      111: "The network connection is unstable or the system is busy.",
+      114: "Lost parameters for this API.",
+      115: "Not allowed to upload a file.",
+      116: "Not allowed to perform for a demo site.",
+      117: "The network connection is unstable or the system is busy.",
+      118: "The network connection is unstable or the system is busy.",
+      119: "Invalid session.",
+      150: "Request source IP does not match the login IP."
+    }
+  }
+
   private get name(): string {
     return this.constructor.name.replaceAll("_", ".")
   }
 
   protected method<M extends MethodVersions>(method: string, versions: M): Method<M> {
-    const context = this.context
+    const context = { ...this.context, path: this.path, errors: this.errors }
     const api = this.name
 
     const numbers = Object.keys(versions).map(Number)
@@ -128,19 +166,19 @@ export abstract class API {
           return versions[context.state.info[api]](ctx)(args) as Output<M, V>
         } else {
           const ctx = createContext(context, api, latest, method)
-          return versions[latest](ctx)(args) as Output<M, V>
+          return versions[latest](ctx)(...args) as Output<M, V>
         }
       },
       latest(...args: MethodArgs<M, Max<Versions<M>>>): Output<M, Max<Versions<M>>> {
         const ctx = createContext(context, api, latest, method)
-        return versions[latest](ctx)(args) as Output<M, Max<Versions<M>>>
+        return versions[latest](ctx)(...args) as Output<M, Max<Versions<M>>>
       }
     }
 
     for (const number of numbers) {
       const version = versions[number]
       const ctx = createContext(context, api, number, method)
-      result[`v${version}`] = (...args: unknown[]) => version(ctx)(args)
+      result[`v${version}`] = (...args: unknown[]) => version(ctx)(...args)
     }
 
     return result as Method<M>
@@ -149,7 +187,8 @@ export abstract class API {
   protected API<T extends API>(api: new (context: APIContext) => T): T {
     return new api({
       ...this.context,
-      path: this.path
+      path: this.path,
+      errors: this.errors
     })
   }
 

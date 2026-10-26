@@ -25,7 +25,8 @@ export class Client {
     return new SYNO({
       url: this.url,
       path: "entry.cgi",
-      state: this.state
+      state: this.state,
+      errors: {}
     })
   }
 
