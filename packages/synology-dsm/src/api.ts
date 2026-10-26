@@ -153,7 +153,12 @@ export abstract class API {
     })
   }
 
-  protected setContextInfo(info: Record<string, number>) {
+  protected setStateInfo(info: Record<string, number>) {
     this.context.state.info = info
+  }
+
+  protected setStateCredentials(sid?: string, synotoken?: string) {
+    this.context.state.sid = sid
+    this.context.state.synotoken = synotoken
   }
 }
