@@ -1,11 +1,8 @@
 import { API } from "$/api"
+import { SYNO_API } from "$/SYNO/API"
 
 export class SYNO extends API {
-  test() {
-    return this.Method("test", {
-      2: {
-        ou
-      }
-    })
+  get api() {
+    return this.API(SYNO_API)
   }
 }

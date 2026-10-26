@@ -1,14 +1,44 @@
-import type { Config } from "$/api"
+import type { APIState } from "$/api"
 import { SYNO } from "$/SYNO"
 
-export class Client {
-  constructor(private readonly config: Config) {}
+type Config =
+  | {
+      url: string
+    }
+  | {
+      quickconnect: string
+    }
 
-  get SYNO() {
-    return new SYNO(this.config)
+export class Client {
+  private readonly url: string
+  private readonly state: APIState = {}
+
+  constructor(config: Config) {
+    if ("url" in config) {
+      this.url = config.url
+    } else {
+      this.url = `https://${config.quickconnect}.de.quickconnect.to`
+    }
+  }
+
+  get syno() {
+    return new SYNO({
+      url: this.url,
+      path: "entry.cgi",
+      state: this.state
+    })
+  }
+
+  getState() {
+    return this.state
+  }
+
+  setStateInfo(info: APIState["info"]) {
+    this.state.info = info
+  }
+
+  setStateCredentials(sid: APIState["sid"], synotoken: APIState["synotoken"]) {
+    this.state.sid = sid
+    this.state.synotoken = synotoken
   }
 }
-
-const client = new Client({ url: "https://pcrolinnas.quickconnect.to" })
-
-console.log(await client.SYNO)
