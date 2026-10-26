@@ -14,14 +14,17 @@ type APIContext = {
 }
 
 type Context = {
-  post<O extends z.ZodType>(output: O, params?: Record<string, string>): Promise<z.output<O>>
+  post<O extends z.ZodType>(
+    output: O,
+    params?: Record<string, string | number | boolean | object | undefined>
+  ): Promise<z.output<O>>
 }
 
 function createContext(context: APIContext, api: string, version: number, method: string): Context {
   return {
     async post<O extends z.ZodType>(
       output: O,
-      params?: Record<string, string>
+      params?: Record<string, string | number | boolean | object | undefined>
     ): Promise<z.output<O>> {
       const url = new URL(`${context.url}/webapi/${context.path}`)
 
@@ -33,7 +36,13 @@ function createContext(context: APIContext, api: string, version: number, method
       if (params) {
         for (const key of Object.keys(params)) {
           const value = params[key]
-          body.append(key, value)
+          if (value !== undefined) {
+            if (Array.isArray(value) || typeof value === "object") {
+              body.append(key, JSON.stringify(value))
+            } else {
+              body.append(key, value.toString())
+            }
+          }
         }
       }
       if (context.state.sid) body.append("_sid", context.state.sid)
@@ -44,6 +53,8 @@ function createContext(context: APIContext, api: string, version: number, method
         Referer: context.url
       }
       if (context.state.synotoken) headers["X-SYNO-TOKEN"] = context.state.synotoken
+
+      console.log(body.toString())
 
       const response = await fetch(url, {
         method: "POST",
@@ -178,7 +189,7 @@ export abstract class API {
     for (const number of numbers) {
       const version = versions[number]
       const ctx = createContext(context, api, number, method)
-      result[`v${version}`] = (...args: unknown[]) => version(ctx)(...args)
+      result[`v${number}`] = (...args: unknown[]) => version(ctx)(...args)
     }
 
     return result as Method<M>
