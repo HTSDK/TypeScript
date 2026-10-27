@@ -26,8 +26,10 @@ const ListResponse = z.object({
 export class SYNO_FileStation_Favorite extends API {
   get list() {
     return this.method("list", {
-      1: ctx => (params?: ListParams) => ctx.post(ListResponse, params),
-      2: ctx => (params?: ListParams) => ctx.post(ListResponse, params)
+      1: ctx => (params?: ListParams) =>
+        ctx.post(ListResponse, { ...params, additional: params?.additional?.join(",") }),
+      2: ctx => (params?: ListParams) =>
+        ctx.post(ListResponse, { ...params, additional: params?.additional?.join(",") })
     })
   }
 }

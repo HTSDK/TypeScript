@@ -54,8 +54,6 @@ function createContext(context: APIContext, api: string, version: number, method
       }
       if (context.state.synotoken) headers["X-SYNO-TOKEN"] = context.state.synotoken
 
-      console.log(body.toString())
-
       const response = await fetch(url, {
         method: "POST",
         body,
